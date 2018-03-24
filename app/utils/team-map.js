@@ -1,6 +1,9 @@
 'use strict'
 
 export default {
+  common: {
+    ball: require('../../assets/img/common/ball.jpeg')
+  },
   atl: {
     id: 1610612737,
     city: 'Atlanta',

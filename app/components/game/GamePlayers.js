@@ -1,5 +1,7 @@
 'use strict'
 
+import teamMap from '../../utils/team-map'
+
 import React, {
   Component,
   StyleSheet,
@@ -7,30 +9,49 @@ import React, {
   Text,
   View,
   ScrollView,
-  ListView
+  ListView,
+  Image
 } from 'react-native'
 
 class PlayerRow extends Component {
   render () {
     const {player, last} = this.props
+    const homeTeamLogo = teamMap['common'].ball
 
     return (
-      <View style={!last ? styles.playerBox : [styles.playerBox, styles.playerBoxLast] }>
-        <View style={[styles.p2, styles.p2Name]}><Text style={styles.pName}>{player.first_name.substring(0, 1) + '.' + player.last_name}</Text></View>
-        <View style={styles.p1}><View style={{flexDirection: 'column', flex: 1}}><Text style={styles.dataBox}>{player.starting_position ? player.starting_position : '-'}</Text></View></View>
-        <View style={styles.p1}><View style={{flexDirection: 'column', flex: 1}}><Text style={styles.dataBox}>{player.points}</Text></View></View>
-        <View style={styles.p1}><View style={{flexDirection: 'column', flex: 1}}><Text style={styles.dataBox}>{player.assists}</Text></View></View>
-        <View style={styles.p1}><View style={{flexDirection: 'column', flex: 1}}><Text style={styles.dataBox}>{parseInt(player.rebounds_defensive, 10) + parseInt(player.rebounds_offensive, 10)}</Text></View></View>
-        <View style={styles.p1}><View style={{flexDirection: 'column', flex: 1}}><Text style={styles.dataBox}>{player.field_goals_made + ' - ' + player.field_goals_attempted}</Text></View></View>
-        <View style={styles.p1}><View style={{flexDirection: 'column', flex: 1}}><Text style={styles.dataBox}>{player.blocks}</Text></View></View>
-        <View style={styles.p1}><View style={{flexDirection: 'column', flex: 1}}><Text style={styles.dataBox}>{player.steals}</Text></View></View>
-        <View style={styles.p1}><View style={{flexDirection: 'column', flex: 1}}><Text style={styles.dataBox}>{player.three_pointers_made + ' - ' + player.three_pointers_attempted}</Text></View></View>
-        <View style={styles.p1}><View style={{flexDirection: 'column', flex: 1}}><Text style={styles.dataBox}>{player.free_throws_made + ' - ' + player.free_throws_attempted}</Text></View></View>
-        <View style={styles.p1}><View style={{flexDirection: 'column', flex: 1}}><Text style={styles.dataBox}>{player.turnovers}</Text></View></View>
-        <View style={styles.p1}><View style={{flexDirection: 'column', flex: 1}}><Text style={styles.dataBox}>{player.fouls}</Text></View></View>
-        <View style={styles.p1}><View style={{flexDirection: 'column', flex: 1}}><Text style={styles.dataBox}>{player.plus_minus}</Text></View></View>
-        <View style={[styles.p1, styles.lastP1]}><View style={{flexDirection: 'column', flex: 1}}><Text style={styles.dataBox}>{player.minutes}</Text></View></View>
+      <View style={newStyles.container}>
+        <View style={newStyles.minute}><Text>17'</Text></View>
+        <View style={newStyles.content}>
+          <View style={newStyles.player}>
+            <Text style={newStyles.playerName}>Messi</Text>
+            <Image style={newStyles.image} source={homeTeamLogo}/>
+          </View>
+          <View style={newStyles.score}>
+            <Text>1 - 1</Text> 
+          </View>
+          <View style={newStyles.player}>
+            <Image style={newStyles.image}/>
+            <Text style={newStyles.playerName}>Messi</Text>
+          </View>
+        </View>
+        <View style={newStyles.minute}></View>
       </View>
+      // <View style={!last ? styles.playerBox : [styles.playerBox, styles.playerBoxLast] }>
+      //   <View style={[styles.p2, styles.p2Name]}><Text style={styles.pName}>{player.first_name.substring(0, 1) + '.' + player.last_name}</Text></View>
+      //   <View style={styles.p1}><View style={{flexDirection: 'column', flex: 1}}><Text style={styles.dataBox}>{player.starting_position ? player.starting_position : '-'}</Text></View></View>
+      //   <View style={styles.p1}><View style={{flexDirection: 'column', flex: 1}}><Text style={styles.dataBox}>{player.points}</Text></View></View>
+      //   <View style={styles.p1}><View style={{flexDirection: 'column', flex: 1}}><Text style={styles.dataBox}>{player.assists}</Text></View></View>
+      //   <View style={styles.p1}><View style={{flexDirection: 'column', flex: 1}}><Text style={styles.dataBox}>{parseInt(player.rebounds_defensive, 10) + parseInt(player.rebounds_offensive, 10)}</Text></View></View>
+      //   <View style={styles.p1}><View style={{flexDirection: 'column', flex: 1}}><Text style={styles.dataBox}>{player.field_goals_made + ' - ' + player.field_goals_attempted}</Text></View></View>
+      //   <View style={styles.p1}><View style={{flexDirection: 'column', flex: 1}}><Text style={styles.dataBox}>{player.blocks}</Text></View></View>
+      //   <View style={styles.p1}><View style={{flexDirection: 'column', flex: 1}}><Text style={styles.dataBox}>{player.steals}</Text></View></View>
+      //   <View style={styles.p1}><View style={{flexDirection: 'column', flex: 1}}><Text style={styles.dataBox}>{player.three_pointers_made + ' - ' + player.three_pointers_attempted}</Text></View></View>
+      //   <View style={styles.p1}><View style={{flexDirection: 'column', flex: 1}}><Text style={styles.dataBox}>{player.free_throws_made + ' - ' + player.free_throws_attempted}</Text></View></View>
+      //   <View style={styles.p1}><View style={{flexDirection: 'column', flex: 1}}><Text style={styles.dataBox}>{player.turnovers}</Text></View></View>
+      //   <View style={styles.p1}><View style={{flexDirection: 'column', flex: 1}}><Text style={styles.dataBox}>{player.fouls}</Text></View></View>
+      //   <View style={styles.p1}><View style={{flexDirection: 'column', flex: 1}}><Text style={styles.dataBox}>{player.plus_minus}</Text></View></View>
+      //   <View style={[styles.p1, styles.lastP1]}><View style={{flexDirection: 'column', flex: 1}}><Text style={styles.dataBox}>{player.minutes}</Text></View></View>
+      // </View>
     )
   }
 }
@@ -97,14 +118,14 @@ export default class GamePlayers extends Component {
     const {detail} = this.props
 
     if (index === 0) {
-      return this.renderTitle(index)
+      return (<View/>)//this.renderTitle(index)
     }
     return (<PlayerRow player={player} key={index} last={index === detail.player.length} />)
   }
 
   render () {
     const {dataSource} = this.state
-    const horizontal = true
+    const horizontal = false
     return (
       /**
        * @TODO: I don't know what is the best practice to scroll both horizontal and vertical
@@ -129,6 +150,53 @@ GamePlayers.propTypes = {
   detail: PropTypes.object
 }
 
+const newStyles = StyleSheet.create({
+  container: {
+    height: 30,
+    alignItems: 'center',
+    // justifyContent: 'center',
+    marginTop: 0,
+    backgroundColor: '#cfcfcf',
+    flexDirection: 'row'
+  },
+  minute: {
+    width: 30,
+    marginLeft:8,
+    // height:30,
+    backgroundColor: 'yellow'
+  },
+  content: {
+    flex:1,
+    flexDirection: 'row',
+    backgroundColor: 'white',
+    justifyContent: 'center',
+  },
+  player: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  playerName: {
+    backgroundColor: 'red',
+  },
+  image: {
+    width: 10,
+    height: 10,
+  },
+  score: {
+    width: 30,
+    backgroundColor: 'yellow',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  paragraph: {
+    margin: 24,
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#34495e',
+  },
+})
+
 const styles = StyleSheet.create({
   // Container
   container: {
@@ -137,22 +205,25 @@ const styles = StyleSheet.create({
   },
   // Scroll
   scrollView: {
-    flex: 1,
-    width: 400
+    // flex: 1,
+    // height: 10,
+    // width: 400
   },
   // List
   listView: {
     flex: 1,
     flexDirection: 'column',
-    marginBottom: 48,
-    marginRight: 30,
-    width: 800
+    marginBottom: 0,
+    marginRight: 10,
+    marginLeft: 10,
+    // height : 100,
+    // width: 800
   },
   // Player box (tr)
   titleRow: {
     borderBottomColor: '#c2c2c2',
     borderBottomWidth: 2,
-    height: 30,
+    height: 0,
     borderStyle: 'solid'
   },
   playerBox: {
