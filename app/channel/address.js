@@ -16,7 +16,8 @@ const address = {
    * @example gameDate: 20151125
    */
   gameGeneral: (gameDate) => {
-    return `http://data.nba.com/data/5s/json/cms/noseason/scoreboard/${gameDate}/games.json`
+    // return `http://data.nba.com/data/5s/json/cms/noseason/scoreboard/${gameDate}/games.json`
+    return `http://35.189.38.25/Api/Wcs/20180327`
   },
   /**
    * Detail of a game in a specific date
