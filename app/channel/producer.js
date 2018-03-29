@@ -15,7 +15,7 @@ const producer = {
     res['GameList'].forEach((game, index) => {
       item = {
         // id: game.data-id,
-        time: game.FT,
+        time: game.Time,
         home: game.Home,
         scoreHome: game.ScoreHome,
         visitor: game.Visitor,
@@ -24,43 +24,17 @@ const producer = {
 
       const process = game.Time
       switch (process) {
-        /*case FT:
-          // Unstart
-          item.type = 'unstart'
-          item.date = process.period_status
-          result.unstart.push(item)
-          break
-        case 2:
-          // Live
-          item.type = 'live'
-          let game_clock
-          if (process.game_clock) {
-            game_clock = parseInt(process.game_clock.split(':')[0], 10) < 10 ? '0' + process.game_clock : process.game_clock
-          }
-          item.process = {
-            time: game_clock || 'End',
-            quarter: 'Q' + process.period_value
-          }
-          result.live.push(item)
-          break*/
         case 'FT':
           // Over
           item.type = 'over'
           result.over.push(item)
           break
+
         default:
           // Live
           item.type = 'live'
-          let game_clock
-          if (process.game_clock) {
-            game_clock = parseInt(process.game_clock.split(':')[0], 10) < 10 ? '0' + process.game_clock : process.game_clock
-          }
-          item.process = {
-            time: game_clock || 'End',
-            quarter: 'Q' + process.period_value
-          }
           result.live.push(item)
-          return
+          break
       }
     })
 

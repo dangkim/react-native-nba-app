@@ -36,8 +36,8 @@ export default class GamePanel extends Component {
   render () {
     const {game} = this.props
 
-    const homeAbb = game.home.team.toLowerCase()
-    const visitorAbb = game.visitor.team.toLowerCase()
+    const homeAbb = game.home.toLowerCase()
+    const visitorAbb = game.visitor.toLowerCase()
 
     let gameProcess = ''
     let cssType = ''

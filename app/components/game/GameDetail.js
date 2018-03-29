@@ -22,8 +22,8 @@ export default class GameDetail extends Component {
   constructor (props) {
     super(props)
     const {game, date} = props.route
-    const homeAbb = game.home.team.toLowerCase()
-    const visitorAbb = game.visitor.team.toLowerCase()
+    const homeAbb = game.home.toLowerCase()
+    const visitorAbb = game.visitor.toLowerCase()
     const homeName = teamMap[homeAbb].city + ' ' + teamMap[homeAbb].team
     const visitorName = teamMap[visitorAbb].city + ' ' + teamMap[visitorAbb].team
     this.state = {
@@ -42,10 +42,10 @@ export default class GameDetail extends Component {
     const {actions} = this.props
     const {gameType} = this.state
     const {gameId, date} = this
-    InteractionManager.runAfterInteractions(() => {
-      actions.getGameDetail(gameId, gameType, date[0], date[1], date[2])
-        .catch(err => console.error(err))
-    })
+    // InteractionManager.runAfterInteractions(() => {
+    //   actions.getGameDetail(gameId, gameType, date[0], date[1], date[2])
+    //     .catch(err => console.error(err))
+    // })
   }
 
   componentWillReceiveProps (props) {
@@ -101,8 +101,8 @@ export default class GameDetail extends Component {
 
   render () {
     const {selectedIndex, teamValues, indicator, game} = this.state
-    const homeAbb = game.home.team.toLowerCase()
-    const visitorAbb = game.visitor.team.toLowerCase()
+    const homeAbb = game.home.toLowerCase()
+    const visitorAbb = game.visitor.toLowerCase()
 
     /* Calculate for process and type */
     let gameProcess = ''
