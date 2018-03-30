@@ -47,9 +47,9 @@ const actionHandler = {
         game.detail = game.detail || {}
         game.detail.data = action.data
         game.detail.loaded = true
-        game.process = action.data.process
-        game.home.score = action.data.home.score
-        game.visitor.score = action.data.visitor.score
+        // game.process = action.data.process
+        game.ScoreHome = action.data.home.score
+        game.visitorScore = action.data.visitor.score
         return true
       }
       return false

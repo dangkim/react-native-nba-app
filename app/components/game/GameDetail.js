@@ -24,8 +24,8 @@ export default class GameDetail extends Component {
     const {game, date} = props.route
     const homeAbb = game.home.toLowerCase()
     const visitorAbb = game.visitor.toLowerCase()
-    const homeName = teamMap[homeAbb].city + ' ' + teamMap[homeAbb].team
-    const visitorName = teamMap[visitorAbb].city + ' ' + teamMap[visitorAbb].team
+    const homeName = teamMap['atl'].city + ' ' + game.home
+    const visitorName = teamMap['atl'].city + ' ' + game.home
     this.state = {
       selectedIndex: 0,
       teamValues: [homeName, visitorName],
@@ -109,8 +109,8 @@ export default class GameDetail extends Component {
     let cssType = ''
     switch (game.type) {
       case 'live':
-        gameProcess += game.process.quarter + ' '
-        gameProcess += game.process.time.replace(/\s+/, '')
+        // gameProcess += game.process.quarter + ' '
+        // gameProcess += game.process.time.replace(/\s+/, '')
         cssType = 'Live'
         break
       case 'over':
@@ -133,8 +133,8 @@ export default class GameDetail extends Component {
       visitorStand = visitorStandState.wins + '-' + visitorStandState.losses
     }
 
-    const homeTeamLogo = teamMap[homeAbb].logo
-    const visitorTeamLogo = teamMap[visitorAbb].logo
+    const homeTeamLogo = teamMap['atl'].logo
+    const visitorTeamLogo = teamMap['atl'].logo
 
     /* Current team chosen */
     const homeCss = selectedIndex === 0 ? 'Active' : 'Inactive'
@@ -142,17 +142,17 @@ export default class GameDetail extends Component {
     return (
       <View style={{flex: 1}}>
         {/* Navigation */}
-        <View style={[ styles.nav, {backgroundColor: teamMap[homeAbb].color} ]}>
+        <View style={[ styles.nav, {backgroundColor: teamMap['atl'].color} ]}>
           <TouchableHighlight onPress={this.onBackPress.bind(this)} underlayColor='transparent' style={{width: 80}}>
             <Icon name='ion|ios-arrow-left' size={26} color='#fff' style={styles.backNav} />
           </TouchableHighlight>
         </View>
         {/* Sum info */}
-        <View style={[styles.sumContainer, {backgroundColor: teamMap[homeAbb].color}]} >
+        <View style={[styles.sumContainer, {backgroundColor: teamMap['atl'].color}]} >
           <View style={styles.team}>
             <Image style={styles.teamLogo} source={homeTeamLogo}/>
-            <Text style={styles.teamCity}>{teamMap[homeAbb].city}</Text>
-            <Text style={styles.teamName}>{teamMap[homeAbb].team}</Text>
+            <Text style={styles.teamCity}>{teamMap['atl'].city}</Text>
+            <Text style={styles.teamName}>{game.home}</Text>
             <Text style={styles.standing}>{homeStand}</Text>
           </View>
 
@@ -162,12 +162,12 @@ export default class GameDetail extends Component {
               <View style={styles.infoScorePanel}>
                 <View style={styles.infoScoreBlock}>
                   <Text style={styles.infoSide}>Home</Text>
-                  <Text style={styles.infoScore}>{game.home.score}</Text>
+                  <Text style={styles.infoScore}>{game.scoreHome}</Text>
                 </View>
                 <View style={styles.infoDivider} />
                 <View style={styles.infoScoreBlock}>
                   <Text style={styles.infoSide}>Away</Text>
-                  <Text style={styles.infoScore}>{game.visitor.score}</Text>
+                  <Text style={styles.infoScore}>{game.visitorScore}</Text>
                 </View>
               </View>
             }
@@ -175,8 +175,8 @@ export default class GameDetail extends Component {
 
           <View style={styles.team}>
             <Image style={styles.teamLogo} source={visitorTeamLogo}/>
-            <Text style={styles.teamCity}>{teamMap[visitorAbb].city}</Text>
-            <Text style={styles.teamName}>{teamMap[visitorAbb].team}</Text>
+            <Text style={styles.teamCity}>{teamMap['atl'].city}</Text>
+            <Text style={styles.teamName}>{game.home}</Text>
             <Text style={styles.standing}>{visitorStand}</Text>
           </View>
         </View>
@@ -185,13 +185,13 @@ export default class GameDetail extends Component {
           <TouchableHighlight onPress={this.onChange.bind(this, 0)} underlayColor='transparent' style={[styles.segPanel, styles[`segPanel${homeCss}`]]}>
             <View style={styles.segPanelInner}>
               <Text style={[styles.segTeam, styles[`segTeam${homeCss}`]]}>{teamValues[0]}</Text>
-              <View style={homeCss === 'Active' ? {backgroundColor: teamMap[homeAbb].color, height: 4} : {opacity: 0}} />
+              <View style={homeCss === 'Active' ? {backgroundColor: teamMap['atl'].color, height: 4} : {opacity: 0}} />
             </View>
           </TouchableHighlight>
           <TouchableHighlight onPress={this.onChange.bind(this, 1)} underlayColor='transparent' style={[styles.segPanel, styles[`segPanel${visitorCss}`]]}>
             <View style={styles.segPanelInner}>
               <Text style={[styles.segTeam, styles[`segTeam${visitorCss}`]]}>{teamValues[1]}</Text>
-              <View style={visitorCss === 'Active' ? {backgroundColor: teamMap[visitorAbb].color, height: 4} : {opacity: 0}} />
+              <View style={visitorCss === 'Active' ? {backgroundColor: teamMap['atl'].color, height: 4} : {opacity: 0}} />
             </View>
           </TouchableHighlight>
         </View>
@@ -200,7 +200,7 @@ export default class GameDetail extends Component {
           <View style={styles.indicatorView}>
             <ActivityIndicatorIOS
               animating
-              color={selectedIndex === 0 ? teamMap[homeAbb].color : teamMap[visitorAbb].color}
+              color={selectedIndex === 0 ? teamMap['atl'].color : teamMap['atl'].color}
               style={styles.indicator}
               size='large'
             />
