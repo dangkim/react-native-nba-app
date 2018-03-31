@@ -60,15 +60,20 @@ export default class GamePanel extends Component {
     }
 
     const homeTeamLogo = teamMap['atl'].logo
+    
     const visitorTeamLogo = teamMap['atl'].logo
+
+    var index = this.props.index % 28 + 1
+    var teamKey = Object.keys(teamMap)[index]
+    // console.log('Logo :' + Object.keys(teamMap)[index])
 
     return (
       <TouchableHighlight onPress={this.onPressRow.bind(this)} underlayColor='transparent'>
-        <View style={[styles.container, {backgroundColor: teamMap['atl'].color}]} >
+        <View style={[styles.container, {backgroundColor: teamMap[teamKey].color}]} >
 
           <View style={styles.team}>
             <Image style={styles.teamLogo} source={homeTeamLogo}/>
-            <Text style={styles.teamCity}>{teamMap['atl'].city}</Text>
+            <Text style={styles.teamCity}>{''}</Text>
             <Text style={styles.teamName}>{game.home}</Text>
           </View>
 
@@ -85,7 +90,7 @@ export default class GamePanel extends Component {
 
           <View style={styles.team}>
             <Image style={styles.teamLogo} source={visitorTeamLogo} />
-            <Text style={styles.teamCity}>{teamMap['atl'].city}</Text>
+            <Text style={styles.teamCity}>{''}</Text>
             <Text style={styles.teamName}>{game.visitor}</Text>
           </View>
         </View>
