@@ -12,17 +12,21 @@ const producer = {
     }
     let item
 
-    res['GameList'].forEach((game, index) => {
+    res['data']['match'].forEach((game, index) => {
       item = {
-        // id: game.data-id,
-        time: game.Time,
-        home: game.Home,
-        scoreHome: game.ScoreHome,
-        visitor: game.Visitor,
-        scoreVisiter: game.ScoreVisitor
+        id: game.id,
+        time: game.time,
+        home: game.home_name,
+        scoreHome: '?',
+        visitor: game.away_name,
+        scoreVisiter: '?',
+        detail: {
+          loaded: false,
+          data: {}
+        }
       }
 
-      const process = game.Time
+      const process = game.time
       switch (process) {
         case 'FT':
           // Over

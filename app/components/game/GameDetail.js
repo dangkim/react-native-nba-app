@@ -25,7 +25,7 @@ export default class GameDetail extends Component {
     const homeAbb = game.home.toLowerCase()
     const visitorAbb = game.visitor.toLowerCase()
     const homeName = teamMap['atl'].city + ' ' + game.home
-    const visitorName = teamMap['atl'].city + ' ' + game.home
+    const visitorName = teamMap['atl'].city + ' ' + game.visitor
     this.state = {
       selectedIndex: 0,
       teamValues: [homeName, visitorName],
@@ -127,10 +127,10 @@ export default class GameDetail extends Component {
     let visitorStand = ''
 
     if (standing.loaded) {
-      const homeStandState = standing.data[game.home.id].state
-      const visitorStandState = standing.data[game.visitor.id].state
-      homeStand = homeStandState.wins + ' - ' + homeStandState.losses
-      visitorStand = visitorStandState.wins + '-' + visitorStandState.losses
+      const homeStandState = standing.data['1610612737'].state
+      const visitorStandState = standing.data['1610612737'].state
+      homeStand = ''//homeStandState.wins + ' - ' + homeStandState.losses
+      visitorStand = ''//visitorStandState.wins + '-' + visitorStandState.losses
     }
 
     const homeTeamLogo = teamMap['atl'].logo
@@ -167,7 +167,7 @@ export default class GameDetail extends Component {
                 <View style={styles.infoDivider} />
                 <View style={styles.infoScoreBlock}>
                   <Text style={styles.infoSide}>Away</Text>
-                  <Text style={styles.infoScore}>{game.visitorScore}</Text>
+                  <Text style={styles.infoScore}>{game.scoreVisiter}</Text>
                 </View>
               </View>
             }
@@ -176,7 +176,7 @@ export default class GameDetail extends Component {
           <View style={styles.team}>
             <Image style={styles.teamLogo} source={visitorTeamLogo}/>
             <Text style={styles.teamCity}>{teamMap['atl'].city}</Text>
-            <Text style={styles.teamName}>{game.home}</Text>
+            <Text style={styles.teamName}>{game.visitor}</Text>
             <Text style={styles.standing}>{visitorStand}</Text>
           </View>
         </View>
