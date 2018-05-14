@@ -19,16 +19,36 @@ class PlayerRow extends Component {
     const homeTeamLogo = teamMap['common'].ball
     
     const player = players[index - 1]
-    if (player.home_away == 'h') 
+    const isHomeEvent = player.home_away == 'h'
+    const isAwayEvent = player.home_away == 'a'
+
+    // home/away player name
+    var playerNameHome = ' '
+    var playerNameAway = ' '
+    if (isHomeEvent) 
     {
-      var playerNameHome = player.player
+      playerNameHome = player.player
     }
     else
     {
-      var playerNameAway = player.player
+      playerNameAway = player.player
     }
 
+    // ball/yellow card
     var imageSouce = player.event == 'GOAL' ? teamMap['common'].ball : teamMap['common'].yellowCard
+
+    // score
+    var homeScore = 0
+    var awayScore = 0
+    for (let index = 0; index < players.length; index++) {
+      const player = players[index];
+      
+      if (isHomeEvent && player.event == 'GOAL')
+        homeScore++
+
+      if (isAwayEvent && player.event == 'GOAL')
+        awayScore++
+    }
 
     return (
       <View style={newStyles.container}>
@@ -36,13 +56,13 @@ class PlayerRow extends Component {
         <View style={newStyles.content}>
           <View style={newStyles.player}>
             <Text style={newStyles.playerName}>{playerNameHome}</Text>
-            <Image style={newStyles.image} source={imageSouce}/>
+            {isHomeEvent && <Image style={newStyles.image} source={imageSouce}/>}
           </View>
           <View style={newStyles.score}>
-            {/* <Text>1 - 1</Text>  */}
+            {player.event == 'GOAL' && <Text>{homeScore} - {awayScore}</Text>}
           </View>
           <View style={newStyles.player}>
-            <Image style={newStyles.image}/>
+            {isAwayEvent && <Image style={newStyles.image} source={imageSouce}/>}
             <Text style={newStyles.playerName}>{playerNameAway}</Text>
           </View>
         </View>
@@ -177,7 +197,7 @@ const newStyles = StyleSheet.create({
   },
   image: {
     width: 10,
-    height: 10,
+    height: 10
   },
   score: {
     width: 30,

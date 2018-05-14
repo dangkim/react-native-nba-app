@@ -180,7 +180,7 @@ export default class GameDetail extends Component {
             <Text style={styles.standing}>{visitorStand}</Text>
           </View>
         </View>
-        {/* Switch */}
+        {/* Switch 
         <View style={styles.segment}>
           <TouchableHighlight onPress={this.onChange.bind(this, 0)} underlayColor='transparent' style={[styles.segPanel, styles[`segPanel${homeCss}`]]}>
             <View style={styles.segPanelInner}>
@@ -195,6 +195,7 @@ export default class GameDetail extends Component {
             </View>
           </TouchableHighlight>
         </View>
+        */}
         {/* TODO: activity indicator can be a component */}
         {indicator && Platform.OS === 'ios' &&
           <View style={styles.indicatorView}>
