@@ -17,7 +17,7 @@ const address = {
    */
   gameGeneral: (gameDate) => {
     // return `http://data.nba.com/data/5s/json/cms/noseason/scoreboard/${gameDate}/games.json`
-    return `http://35.200.238.181/api/scores/20180510`
+    return `http://35.200.238.181/api/scores/20180512`
   },
   /**
    * Detail of a game in a specific date
@@ -27,7 +27,7 @@ const address = {
   gameDetail: (gameDate, gameId) => {
     // return `http://data.nba.com/data/10s/json/cms/noseason/game/${gameDate}/${gameId}/boxscore.json`
     // return 'http://livescore-api.com/api-client/scores/events.json?key=wb3PcXASNGBAeEsV&secret=scPiUa4wp0A9Czh8KlYXiyQ6fsHt79pz&id=89261'
-    return 'http://35.200.238.181/api/event/20180510'
+    return 'http://35.200.238.181/api/event/20180511'
   },
   /**
    * Current league standing

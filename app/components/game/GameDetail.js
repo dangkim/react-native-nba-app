@@ -43,8 +43,8 @@ export default class GameDetail extends Component {
     const {gameType} = this.state
     const {gameId, date} = this
     // InteractionManager.runAfterInteractions(() => {
-    //   actions.getGameDetail(gameId, gameType, date[0], date[1], date[2])
-    //     .catch(err => console.error(err))
+    actions.getGameDetail(gameId, gameType, date[0], date[1], date[2])
+        // .catch(err => console.error(err))
     // })
   }
 
@@ -211,8 +211,8 @@ export default class GameDetail extends Component {
             <Text>Loading...</Text>
           </View>
         }
-        {!indicator && game.detail.loaded &&
-          <GamePlayers detail={selectedIndex === 0 ? game.detail.data.home : game.detail.data.visitor} />
+        {!indicator &&
+          <GamePlayers detail= {game.detail.data}  />
         }
       </View>
     )

@@ -17,9 +17,9 @@ const producer = {
         id: game.id,
         time: game.time,
         home: game.home_name,
-        scoreHome: '?',
+        scoreHome: game.score.split('-')[0].trim(),
         visitor: game.away_name,
-        scoreVisiter: '?',
+        scoreVisiter: game.score.split('-')[1].trim(),
         detail: {
           loaded: false,
           data: {}
@@ -129,27 +129,28 @@ const producer = {
         turnovers: "0"
    */
   gameDetail: (res) => {
-    const data = res.sports_content.game
+    const data = res.data.event
     let result = {
       home: {},
       visitor: {}
+      //detail: data
     }
-    Object.keys(result).forEach(side => {
-      result[side].team = data[side].team_key
-      result[side].score = data[side].score
-      result[side].player = data[side].players.player
+    data.forEach(side => {
+      //result[side].team = "AAA"
+      //result[side].score = "0"
+      result.player = side
     })
 
-    const gameType = parseInt(data['period_time'].game_status, 10)
+    const gameType = 3//parseInt(data['period_time'].game_status, 10)
     result.type = gameType === 3 ? 'over' : (gameType === 2 ? 'live' : 'unstart')
 
-    if (result.type === 'live') {
-      const process = data.period_time
-      result.process = {
-        time: process.game_clock || 'End',
-        quarter: 'Q' + process.period_value
-      }
-    }
+    // if (result.type === 'live') {
+    //   const process = data.period_time
+    //   result.process = {
+    //     time: process.game_clock || 'End',
+    //     quarter: 'Q' + process.period_value
+    //   }
+    // }
     return result
   },
 
