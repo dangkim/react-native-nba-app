@@ -15,43 +15,39 @@ import React, {
 
 class PlayerRow extends Component {
   render () {
-    const {player, last} = this.props
+    const {players, index, last} = this.props
     const homeTeamLogo = teamMap['common'].ball
+    
+    const player = players[index - 1]
+    if (player.home_away == 'h') 
+    {
+      var playerNameHome = player.player
+    }
+    else
+    {
+      var playerNameAway = player.player
+    }
+
+    var imageSouce = player.event == 'GOAL' ? teamMap['common'].ball : teamMap['common'].yellowCard
 
     return (
       <View style={newStyles.container}>
-        <View style={newStyles.minute}><Text>17'</Text></View>
+        <View style={newStyles.minute}><Text>{player.time}'</Text></View>
         <View style={newStyles.content}>
           <View style={newStyles.player}>
-            <Text style={newStyles.playerName}>Messi</Text>
-            <Image style={newStyles.image} source={homeTeamLogo}/>
+            <Text style={newStyles.playerName}>{playerNameHome}</Text>
+            <Image style={newStyles.image} source={imageSouce}/>
           </View>
           <View style={newStyles.score}>
-            <Text>1 - 1</Text> 
+            {/* <Text>1 - 1</Text>  */}
           </View>
           <View style={newStyles.player}>
             <Image style={newStyles.image}/>
-            <Text style={newStyles.playerName}>Messi</Text>
+            <Text style={newStyles.playerName}>{playerNameAway}</Text>
           </View>
         </View>
         <View style={newStyles.minute}></View>
       </View>
-      // <View style={!last ? styles.playerBox : [styles.playerBox, styles.playerBoxLast] }>
-      //   <View style={[styles.p2, styles.p2Name]}><Text style={styles.pName}>{player.first_name.substring(0, 1) + '.' + player.last_name}</Text></View>
-      //   <View style={styles.p1}><View style={{flexDirection: 'column', flex: 1}}><Text style={styles.dataBox}>{player.starting_position ? player.starting_position : '-'}</Text></View></View>
-      //   <View style={styles.p1}><View style={{flexDirection: 'column', flex: 1}}><Text style={styles.dataBox}>{player.points}</Text></View></View>
-      //   <View style={styles.p1}><View style={{flexDirection: 'column', flex: 1}}><Text style={styles.dataBox}>{player.assists}</Text></View></View>
-      //   <View style={styles.p1}><View style={{flexDirection: 'column', flex: 1}}><Text style={styles.dataBox}>{parseInt(player.rebounds_defensive, 10) + parseInt(player.rebounds_offensive, 10)}</Text></View></View>
-      //   <View style={styles.p1}><View style={{flexDirection: 'column', flex: 1}}><Text style={styles.dataBox}>{player.field_goals_made + ' - ' + player.field_goals_attempted}</Text></View></View>
-      //   <View style={styles.p1}><View style={{flexDirection: 'column', flex: 1}}><Text style={styles.dataBox}>{player.blocks}</Text></View></View>
-      //   <View style={styles.p1}><View style={{flexDirection: 'column', flex: 1}}><Text style={styles.dataBox}>{player.steals}</Text></View></View>
-      //   <View style={styles.p1}><View style={{flexDirection: 'column', flex: 1}}><Text style={styles.dataBox}>{player.three_pointers_made + ' - ' + player.three_pointers_attempted}</Text></View></View>
-      //   <View style={styles.p1}><View style={{flexDirection: 'column', flex: 1}}><Text style={styles.dataBox}>{player.free_throws_made + ' - ' + player.free_throws_attempted}</Text></View></View>
-      //   <View style={styles.p1}><View style={{flexDirection: 'column', flex: 1}}><Text style={styles.dataBox}>{player.turnovers}</Text></View></View>
-      //   <View style={styles.p1}><View style={{flexDirection: 'column', flex: 1}}><Text style={styles.dataBox}>{player.fouls}</Text></View></View>
-      //   <View style={styles.p1}><View style={{flexDirection: 'column', flex: 1}}><Text style={styles.dataBox}>{player.plus_minus}</Text></View></View>
-      //   <View style={[styles.p1, styles.lastP1]}><View style={{flexDirection: 'column', flex: 1}}><Text style={styles.dataBox}>{player.minutes}</Text></View></View>
-      // </View>
     )
   }
 }
@@ -120,7 +116,7 @@ export default class GamePlayers extends Component {
     if (index === 0) {
       return (<View/>)//this.renderTitle(index)
     }
-    return (<PlayerRow player={player} key={index} last={index === detail.player.length} />)
+    return (<PlayerRow players={detail.player} index={index} key={index} last={index === detail.player.length} />)
   }
 
   render () {
@@ -177,6 +173,7 @@ const newStyles = StyleSheet.create({
   },
   playerName: {
     backgroundColor: 'red',
+    fontSize: 12
   },
   image: {
     width: 10,

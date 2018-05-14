@@ -2,7 +2,8 @@
 
 export default {
   common: {
-    ball: require('../../assets/img/common/ball.jpeg')
+    ball: require('../../assets/img/common/ball.jpeg'),
+    yellowCard: require('../../assets/img/common/yellow_card.png')
   },
   atl: {
     id: 1610612737,

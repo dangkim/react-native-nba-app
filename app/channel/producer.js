@@ -131,15 +131,16 @@ const producer = {
   gameDetail: (res) => {
     const data = res.data.event
     let result = {
-      home: {},
-      visitor: {}
+      //home: {},
+      //visitor: {}
       //detail: data
     }
-    data.forEach(side => {
+    // data.forEach(side => {
       //result[side].team = "AAA"
       //result[side].score = "0"
-      result.player = side
-    })
+      // result.player = side
+    // })
+    result.player = data
 
     const gameType = 3//parseInt(data['period_time'].game_status, 10)
     result.type = gameType === 3 ? 'over' : (gameType === 2 ? 'live' : 'unstart')
