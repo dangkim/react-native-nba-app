@@ -56,13 +56,13 @@ class PlayerRow extends Component {
         <View style={newStyles.content}>
           <View style={newStyles.player}>
             <Text style={newStyles.playerName}>{playerNameHome}</Text>
-            {isHomeEvent && <Image style={newStyles.image} source={imageSouce}/>}
           </View>
+          {isHomeEvent && <Image style={newStyles.image} source={imageSouce}/>}
           <View style={newStyles.score}>
             {player.event == 'GOAL' && <Text>{homeScore} - {awayScore}</Text>}
           </View>
+          {isAwayEvent && <Image style={newStyles.image} source={imageSouce}/>}
           <View style={newStyles.player}>
-            {isAwayEvent && <Image style={newStyles.image} source={imageSouce}/>}
             <Text style={newStyles.playerName}>{playerNameAway}</Text>
           </View>
         </View>
@@ -173,35 +173,43 @@ const newStyles = StyleSheet.create({
     // justifyContent: 'center',
     marginTop: 0,
     backgroundColor: '#cfcfcf',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    borderBottomColor: 'black',
+    borderBottomWidth: 1
   },
   minute: {
     width: 30,
-    marginLeft:8,
+    // marginLeft:8,
     // height:30,
-    backgroundColor: 'yellow'
+    // backgroundColor: 'yellow'
   },
   content: {
     flex:1,
     flexDirection: 'row',
-    backgroundColor: 'white',
+    // backgroundColor: 'white',
     justifyContent: 'center',
+    alignItems: 'center',
   },
   player: {
+    flex: 3,
     flexDirection: 'row',
     alignItems: 'center',
   },
   playerName: {
-    backgroundColor: 'red',
-    fontSize: 12
+    // backgroundColor: 'red',
+    fontSize: 11,
+    alignItems: 'center',
   },
   image: {
     width: 10,
-    height: 10
+    height: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   score: {
+    flex: 1,
     width: 30,
-    backgroundColor: 'yellow',
+    // backgroundColor: 'yellow',
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -231,10 +239,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     marginBottom: 0,
-    marginRight: 10,
-    marginLeft: 10,
-    // height : 100,
-    // width: 800
+    marginRight: 2,
+    marginLeft: 2
   },
   // Player box (tr)
   titleRow: {
