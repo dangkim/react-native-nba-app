@@ -54,7 +54,8 @@ const address = {
   * @params gameDate month/date/year
   */
   teamRank: (gameDate) => {
-    return `http://stats.nba.com/stats/scoreboard?DayOffset=0&LeagueID=00&gameDate=${gameDate}`
+    // return `http://stats.nba.com/stats/scoreboard?DayOffset=0&LeagueID=00&gameDate=${gameDate}`
+    return 'https://raw.githubusercontent.com/lsv/fifa-worldcup-2018/master/data.json'
   },
 
   teamInfo: (id) => {

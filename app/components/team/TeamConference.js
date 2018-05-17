@@ -49,7 +49,7 @@ export default class TeamConference extends Component {
   }
 
   renderRow (item, _, index) {
-    const team = Object.assign({}, this.teamMapById[item.id], item)
+    const team = Object.assign({}, this.teamMapById['1610612737'], item)
     const itemStyle = index % 2 === 0 ? styles.item : [styles.item, styles.itemEven]
 
     const teamLogo = team.abbr === 'hou' ? teamMap[team.abbr].logo2 : teamMap[team.abbr].logo
@@ -61,14 +61,15 @@ export default class TeamConference extends Component {
             <Text style={styles.orderLabel}>{parseInt(index, 10) + 1}</Text>
           </View>
           <View style={styles.team}>
-            <Text style={styles.teamCity}>{team.city}</Text>
-            <Text style={styles.teamName}>{team.team}</Text>
+            <Text style={styles.teamCity}>{team.name}</Text>
+            {/* <Text style={styles.teamName}>{team.team}</Text> */}
           </View>
           <View style={styles.standing}>
-            <Text style={styles.standingLabel}>{team.loss + ' - ' + team.win}</Text>
+            <Text style={styles.standingLabel}></Text>
           </View>
           <View style={styles.logo}>
-            <Image style={styles.logoImage} source={teamLogo} />
+            {/* <Image style={styles.logoImage} source={teamLogo} /> */}
+            <Text style={styles.logoText}>{item.emojiString}</Text>
           </View>
         </View>
       </TouchableHighlight>
@@ -79,7 +80,7 @@ export default class TeamConference extends Component {
     const {data} = this.props
     const dataSource = new ListView.DataSource({
       rowHasChanged: (row1, row2) => row1 !== row2
-    }).cloneWithRows(data)
+    }).cloneWithRows(data.data)
 
     return (
       <ListView
@@ -143,6 +144,9 @@ const styles = StyleSheet.create({
   logo: {
     alignSelf: 'center',
     flex: 3
+  },
+  logoText: {
+    fontSize: 40,
   },
   logoImage: {
     alignSelf: 'center',

@@ -54,7 +54,7 @@ export default class TeamList extends Component {
         <Tabbar tab={'teams'} {...this.props}/>
         {team.loaded &&
           <CollectionView scrollEnd={this.scrollEnd.bind(this)}>
-          {[<TeamConference data={team.data.western} {...this.props} key={0}/>, <TeamConference data={team.data.eastern} {...this.props} key={1} />]}
+          {[<TeamConference data={team} {...this.props} key={0}/>, <TeamConference data={team} {...this.props} key={1} />]}
           </CollectionView>
         }
       </View>
